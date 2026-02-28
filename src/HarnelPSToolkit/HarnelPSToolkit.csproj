@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net6.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Program.Standalone.cs" />
+    <None Include="Program.Standalone.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\HarnelPSToolkit.Library\HarnelPSToolkit.Library.csproj" />
+  </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="dotnet $(MSBuildProjectDirectory)\..\HarnelPSToolkit.Merger\bin\Debug\net10.0\HarnelPSToolkit.Merger.dll --DllPath $(MSBuildProjectDirectory)\$(OutputPath)HarnelPSToolkit.dll --EntrypointPath $(MSBuildProjectDirectory)\Program.cs --StandalonePath $(MSBuildProjectDirectory)\Program.Standalone.cs" />
+  </Target>
+
+</Project>

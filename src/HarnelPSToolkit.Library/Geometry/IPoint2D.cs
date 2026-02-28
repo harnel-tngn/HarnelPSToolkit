@@ -2,6 +2,7 @@
 
 namespace HarnelPSToolkit.Library.Geometry;
 
+[IncludeIfReferenced]
 public interface IPoint2D<TElem, TSelf, TOperator>
     where TElem : struct, IComparable<TElem>, IEquatable<TElem>
 {

@@ -2,6 +2,7 @@
 
 namespace HarnelPSToolkit.Library.Geometry;
 
+[IncludeIfReferenced]
 public record struct LongPoint2D : IPoint2D<long, LongPoint2D, LongPoint2D.PointOperator>
 {
     public long X { get; }

@@ -1,4 +1,6 @@
 <Solution>
   <Project Path="HarnelPSToolkit.Benchmark/HarnelPSToolkit.Benchmark.csproj" Id="f55c818f-bf9e-46c8-a512-aa005869fdb7" />
   <Project Path="HarnelPSToolkit.Library/HarnelPSToolkit.Library.csproj" Id="b6f95a6c-ed4e-46ff-942a-252dc44498ce" />
+  <Project Path="HarnelPSToolkit.Merger/HarnelPSToolkit.Merger.csproj" Id="5eb3a57a-1c7b-4498-a249-e8731b524b13" />
+  <Project Path="HarnelPSToolkit/HarnelPSToolkit.csproj" Id="691f8103-dd88-4bfe-b19e-4ce6762ac2ff" />
 </Solution>

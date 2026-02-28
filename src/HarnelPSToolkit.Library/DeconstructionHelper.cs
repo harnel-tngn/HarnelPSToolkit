@@ -1,5 +1,6 @@
 ﻿namespace HarnelPSToolkit.Library;
 
+[IncludeIfReferenced]
 public static class DeconstructHelper
 {
     public static void Deconstruct<T>(this T[] arr, out T v1, out T v2)

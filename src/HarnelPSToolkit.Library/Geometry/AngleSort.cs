@@ -4,6 +4,7 @@ using System.Runtime.InteropServices;
 
 namespace HarnelPSToolkit.Library.Geometry;
 
+[IncludeIfReferenced]
 public static class AngleSort
 {
     private record struct AngleSortComparable<TElem, TPoint, TPointOperator>(TPoint Point) : IComparable<AngleSortComparable<TElem, TPoint, TPointOperator>>

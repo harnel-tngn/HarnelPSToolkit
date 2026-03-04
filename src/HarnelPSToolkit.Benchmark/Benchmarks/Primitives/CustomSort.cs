@@ -12,7 +12,7 @@ namespace HarnelPSToolkit.Benchmark.Benchmarks.Primitives;
 [Orderer(SummaryOrderPolicy.FastestToSlowest)]
 [DisassemblyDiagnoser]
 [ReturnValueValidator]
-public class CustomSortBenchnmark
+public class CustomSort
 {
     [Params(1000, 1_000_000)]
     public int Size { get; set; }

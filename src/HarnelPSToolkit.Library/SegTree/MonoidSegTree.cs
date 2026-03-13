@@ -5,8 +5,8 @@ using System.Numerics;
 namespace HarnelPSToolkit.Library.SegTree;
 
 [IncludeIfReferenced]
-public abstract class MonoidSegTree<TElement, TUpdate, TOperator>
-    where TOperator : struct, IMonoidSegTreeOperator<TElement, TUpdate>
+public abstract class MonoidSegTree<TElement, TOperator>
+    where TOperator : struct, IMonoidSegTreeOperator<TElement>
 {
     protected TElement[] _tree;
     protected int _leafMask;
@@ -52,10 +52,10 @@ public abstract class MonoidSegTree<TElement, TUpdate, TOperator>
             _tree[idx] = default(TOperator).Merge(_tree[2 * idx], _tree[2 * idx + 1]);
     }
 
-    public void Update(int index, TUpdate val)
+    public void Update(int index, TElement val)
     {
         var curr = _leafMask | index;
-        _tree[curr] = default(TOperator).UpdateElement(_tree[curr], val);
+        _tree[curr] = val;
         curr >>= 1;
 
         while (curr != 0)
@@ -75,17 +75,6 @@ public abstract class MonoidSegTree<TElement, TUpdate, TOperator>
 
         if (default(TOperator).IsCommutative())
         {
-            while (leftNode <= rightNode)
-            {
-                if ((leftNode & 1) == 1)
-                    _lefts.Add(leftNode++);
-                if ((rightNode & 1) == 0)
-                    _rights.Add(rightNode--);
-
-                leftNode >>= 1;
-                rightNode >>= 1;
-            }
-
             var aggregated = default(TOperator).Identity();
 
             while (leftNode <= rightNode)
@@ -118,17 +107,6 @@ public abstract class MonoidSegTree<TElement, TUpdate, TOperator>
             }
 
             var aggregated = default(TOperator).Identity();
-
-            while (leftNode <= rightNode)
-            {
-                if ((leftNode & 1) == 1)
-                    _lefts.Add(leftNode++);
-                if ((rightNode & 1) == 0)
-                    _rights.Add(rightNode--);
-
-                leftNode >>= 1;
-                rightNode >>= 1;
-            }
 
             for (var idx = 0; idx < _lefts.Count; idx++)
                 aggregated = default(TOperator).Merge(aggregated, _tree[_lefts[idx]]);

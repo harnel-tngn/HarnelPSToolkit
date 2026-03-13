@@ -11,9 +11,9 @@ public abstract class AbelianGroupSegTree<TElement, TUpdate, TDiff, TOperator>
     protected TElement[] _tree;
     protected int _leafMask;
 
-    public int Size { get; private set; }
+    public int Size { get; }
 
-    public AbelianGroupSegTree(int size)
+    protected AbelianGroupSegTree(int size)
     {
         _leafMask = (int)BitOperations.RoundUpToPowerOf2((uint)size);
         var treeSize = _leafMask << 1;
@@ -24,7 +24,17 @@ public abstract class AbelianGroupSegTree<TElement, TUpdate, TDiff, TOperator>
         Array.Fill(_tree, default(TOperator).Identity());
     }
 
+    public TElement AllRange => _tree[1];
     public TElement ElementAt(int idx) => _tree[_leafMask | idx];
+
+    public void Init(TElement element)
+    {
+        for (var idx = 0; idx < Size; idx++)
+            _tree[_leafMask | idx] = default(TOperator).Identity();
+
+        for (var idx = _leafMask - 1; idx > 0; idx--)
+            _tree[idx] = default(TOperator).Merge(_tree[2 * idx], _tree[2 * idx + 1]);
+    }
 
     public void Init(IList<TElement> init)
     {

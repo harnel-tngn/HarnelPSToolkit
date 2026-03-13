@@ -1,7 +1,7 @@
 ﻿namespace HarnelPSToolkit.Library.SegTree;
 
 [IncludeIfReferenced]
-public interface IAbelianGroupSegTreeOperator<TElement, TUpdate, TDiff>
+public interface IAbelianGroupSegTreeOperator<TElement, in TUpdate, TDiff>
 {
     TElement Identity();
     TDiff CreateDiff(TElement element, TUpdate val);

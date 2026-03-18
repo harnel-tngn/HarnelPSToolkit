@@ -30,7 +30,7 @@ public abstract class AbelianGroupSegTree<TElement, TUpdate, TDiff, TOperator>
     public void Init(TElement element)
     {
         for (var idx = 0; idx < Size; idx++)
-            _tree[_leafMask | idx] = default(TOperator).Identity();
+            _tree[_leafMask | idx] = element;
 
         for (var idx = _leafMask - 1; idx > 0; idx--)
             _tree[idx] = default(TOperator).Merge(_tree[2 * idx], _tree[2 * idx + 1]);

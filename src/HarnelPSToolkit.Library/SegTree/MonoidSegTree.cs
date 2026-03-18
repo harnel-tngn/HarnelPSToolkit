@@ -23,6 +23,8 @@ public abstract class MonoidSegTree<TElement, TOperator>
 
         _tree = new TElement[treeSize];
         Size = size;
+
+        Array.Fill(_tree, default(TOperator).Identity());
     }
 
     public TElement AllRange => _tree[1];
